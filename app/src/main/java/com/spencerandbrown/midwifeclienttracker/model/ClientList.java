@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by SESA60180 on 8/24/2016.
+ * Created by mbb on 8/24/2016.
  */
 public class ClientList {
     public static final List<Client> clients = new ArrayList<Client>();
