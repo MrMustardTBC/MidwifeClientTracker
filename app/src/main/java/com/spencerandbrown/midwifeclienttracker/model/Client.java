@@ -2,7 +2,7 @@ package com.spencerandbrown.midwifeclienttracker.model;
 
 import java.util.Date;
 
-g/**
+/**
  * Created by mbb on 8/24/2016.
  */
 public class Client {
