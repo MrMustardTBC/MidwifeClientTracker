@@ -2,9 +2,7 @@ package com.spencerandbrown.midwifeclienttracker;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +13,9 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 
+import com.spencerandbrown.midwifeclienttracker.databinding.ActivityClientDetailBinding;
 import com.spencerandbrown.midwifeclienttracker.databinding.ActivityClientListBinding;
 import com.spencerandbrown.midwifeclienttracker.databinding.ClientListContentBinding;
 import com.spencerandbrown.midwifeclienttracker.model.Client;
@@ -86,7 +82,7 @@ public class ClientListActivity extends AppCompatActivity {
     }
 
     public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.BindingViewHolder> {
 
         private final List<Client> mValues;
 
@@ -95,24 +91,25 @@ public class ClientListActivity extends AppCompatActivity {
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.client_list_content, parent, false);
-            return new ViewHolder(view);
+
+            return new BindingViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id.toString());
-            holder.mContentView.setText(mValues.get(position).name);
+        public void onBindViewHolder(final BindingViewHolder holder, int position) {
+            final Client client =  mValues.get(position);
+            holder.getBinding().setVariable(com.spencerandbrown.midwifeclienttracker.BR.client, client);
+            holder.getBinding().executePendingBindings();
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putInt(ClientDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putInt(ClientDetailFragment.ARG_ITEM_ID, holder.binding.getClient().id);
                         ClientDetailFragment fragment = new ClientDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -121,7 +118,7 @@ public class ClientListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, ClientDetailActivity.class);
-                        intent.putExtra(ClientDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(ClientDetailFragment.ARG_ITEM_ID, holder.binding.getClient().id);
 
                         context.startActivity(intent);
                     }
@@ -135,23 +132,18 @@ public class ClientListActivity extends AppCompatActivity {
             return mValues.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public Client mItem;
+        public class BindingViewHolder extends RecyclerView.ViewHolder {
+            private ClientListContentBinding binding;
 
-            public ViewHolder(View view) {
+            public BindingViewHolder(View view) {
                 super(view);
-                mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                binding = DataBindingUtil.bind(view);
             }
 
-            @Override
-            public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+            public ClientListContentBinding getBinding(){
+                return binding;
             }
+
         }
     }
 }
