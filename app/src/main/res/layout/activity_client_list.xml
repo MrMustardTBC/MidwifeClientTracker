@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="clientList" type="com.spencerandbrown.midwifeclienttracker.model.ClientList"/>
+    </data>
+
+<android.support.design.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -27,7 +33,8 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/client_list" />
+        <include layout="@layout/client_list" app:clients="@{clientList.Clients}"/>
+
     </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -40,3 +47,4 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+</layout>

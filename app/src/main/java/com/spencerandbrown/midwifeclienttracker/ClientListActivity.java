@@ -2,6 +2,9 @@ package com.spencerandbrown.midwifeclienttracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
+import android.databinding.ObservableArrayList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +15,13 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.spencerandbrown.midwifeclienttracker.databinding.ActivityClientListBinding;
+import com.spencerandbrown.midwifeclienttracker.databinding.ClientListContentBinding;
 import com.spencerandbrown.midwifeclienttracker.model.Client;
 import com.spencerandbrown.midwifeclienttracker.model.ClientList;
 
@@ -35,11 +42,18 @@ public class ClientListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    private ClientList mClientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_list);
+        //setContentView(R.layout.activity_client_list);
+
+        ActivityClientListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_client_list);
+
+        // Set list items
+        mClientList = new ClientList();
+        binding.setClientList(mClientList);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -114,6 +128,7 @@ public class ClientListActivity extends AppCompatActivity {
                 }
             });
         }
+
 
         @Override
         public int getItemCount() {

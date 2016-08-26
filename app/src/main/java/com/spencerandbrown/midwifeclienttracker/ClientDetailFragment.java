@@ -47,8 +47,8 @@ public class ClientDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-           // mItem = ClientList.ITEM_MAP.get(getArguments().getInt(ARG_ITEM_ID));
-            mItem = ClientList.clients.get(0);
+           mItem = ClientList.ITEM_MAP.get(getArguments().getInt(ARG_ITEM_ID));
+            //mItem = ClientList.clients.get(0);
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
