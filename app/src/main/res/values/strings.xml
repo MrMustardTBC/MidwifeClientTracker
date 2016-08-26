@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">MidwifeClientTracker</string>
-    <string name="title_client_detail">Client Detail</string>
+    <string name="app_name">Midwife Client Tracker</string>
+    <string name="title_client_detail">Client Details</string>
+    <string name="edit">Edit</string>
+    <string name="client_name">Client Name</string>
+    <string name="due_date_label">Due Date:</string>
+    <string name="lmp_date_label">LMP Date:</string>
+    <string name="conception_date_label">Conception Date:</string>
+    <string name="delivery_date_label">Delivery Date:</string>
+    <string name="notes_hint">notes</string>
 </resources>

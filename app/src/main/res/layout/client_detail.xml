@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.spencerandbrown.midwifeclienttracker.model.Client" />
@@ -12,20 +11,129 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <TextView android:id="@+id/client_detail"
+
+        <EditText android:id="@+id/client_name"
             style="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textIsSelectable="true"
+            android:hint="@string/client_name"
             tools:context="com.spencerandbrown.midwifeclienttracker.ClientDetailFragment"
             android:text="@{client.name}"/>
 
+        <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/client_duedate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text = "@string/due_date_label"/>
+            <TextView
+                android:id="@+id/client_duedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/edit_duedate"
+                android:text="@{client.dueDateText}" />
 
-        <TextView
+            <Button
+                android:id="@+id/edit_duedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/edit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/lmp_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text = "@string/lmp_date_label"/>
+            <TextView
+                android:id="@+id/lmp_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/edit_lmp_date"
+                android:text="@{client.LMPDateText()}" />
+
+            <Button
+                android:id="@+id/edit_lmp_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/edit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/conception_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text = "@string/conception_date_label"/>
+            <TextView
+                android:id="@+id/conception_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/edit_conception_date"
+                android:text="@{client.conceptionDateText()}" />
+
+            <Button
+                android:id="@+id/edit_conception_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/edit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/delivery_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text = "@string/delivery_date_label"/>
+            <TextView
+                android:id="@+id/delivery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/edit_delivery_date"
+                android:text="@{client.deliveryDateText()}" />
+
+            <Button
+                android:id="@+id/edit_delivery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/edit" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/notes"
             android:layout_width="match_parent"
-            android:layout_height="100px"
-            android:id="@+id/client_duedate"
-            android:text="@{client.dueDateText}" />
+            android:layout_height="match_parent"
+            android:hint="@string/notes_hint"
+            android:text="@{client.notes}"/>
     </LinearLayout>
 </layout>

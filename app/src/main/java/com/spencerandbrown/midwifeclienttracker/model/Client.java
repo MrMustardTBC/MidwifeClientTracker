@@ -1,10 +1,9 @@
 package com.spencerandbrown.midwifeclienttracker.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by mbb on 8/24/2016.
- */
 public class Client {
 
     public Integer id;
@@ -18,19 +17,28 @@ public class Client {
     public Client(String name) {
      this.name=name;
     }
+
     public String dueDateText () {
-        return dueDate.toString();
+        return FormatDate(dueDate);
     }
 
     public String LMPDateText () {
-        return LMPDate.toString();
+        return FormatDate(LMPDate);
     }
 
     public String deliveryDateText () {
-        return deliveryDate.toString();
+        return FormatDate(deliveryDate);
     }
 
     public String conceptionDateText () {
-        return conceptionDate.toString();
+        return FormatDate(conceptionDate);
+    }
+
+    private String FormatDate(Date dateToFormat){
+        DateFormat format= DateFormat.getDateInstance();
+        if(dateToFormat!=null)
+            return format.format(dateToFormat);
+        else
+            return "";
     }
 }

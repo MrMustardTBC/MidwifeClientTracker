@@ -53,7 +53,7 @@ public class ClientDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.name);
+                appBarLayout.setTitle(getResources().getString(R.string.title_client_detail));
             }
         }
     }
